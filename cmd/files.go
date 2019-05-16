@@ -360,7 +360,7 @@ func mill(pth string, node *pb.Node, verbose bool) (*pb.Directory, error) {
 
 			if step.Link.Use == schema.FileTag {
 				if reader != nil {
-					reader.Seek(0, 0)
+					_, _ = reader.Seek(0, 0)
 				} else {
 					if step.Link.Mill == "/json" {
 						reader = f
@@ -472,7 +472,7 @@ func multipartReader(f *os.File) (io.ReadSeeker, string, error) {
 	if _, err = io.Copy(part, f); err != nil {
 		return nil, "", err
 	}
-	writer.Close()
+	_ = writer.Close()
 	return bytes.NewReader(body.Bytes()), writer.FormDataContentType(), nil
 }
 

@@ -399,6 +399,7 @@ func (a *api) getFileConfig(g *gin.Context, mill m.Mill, use string, plaintext b
 	var reader io.ReadSeeker
 	conf := &AddFileConfig{}
 
+	// TODO: post @balupton's cmd refactor, allow raw IPFS paths like the mobile API
 	if use == "" {
 		f, fn, err := a.openFile(g)
 		if err != nil {

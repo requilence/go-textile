@@ -414,7 +414,7 @@ func getRepoPath(repoPath string) (string, error) {
 }
 
 // Start the node, the API, and the Gateway
-// And subsribe to updates of the wallet, thread, and notifications
+// And subsribe to updates of the account, thread, and notifications
 func startNode(serveDocs bool) error {
 	listener := node.ThreadUpdateListener()
 
@@ -422,7 +422,7 @@ func startNode(serveDocs bool) error {
 		return err
 	}
 
-	// subscribe to wallet updates
+	// subscribe to account updates
 	go func() {
 		for {
 			select {
@@ -431,13 +431,13 @@ func startNode(serveDocs bool) error {
 					return
 				}
 				switch update.Type {
-				case pb.WalletUpdate_THREAD_ADDED:
+				case pb.AccountUpdate_THREAD_ADDED:
 					break
-				case pb.WalletUpdate_THREAD_REMOVED:
+				case pb.AccountUpdate_THREAD_REMOVED:
 					break
-				case pb.WalletUpdate_ACCOUNT_PEER_ADDED:
+				case pb.AccountUpdate_ACCOUNT_PEER_ADDED:
 					break
-				case pb.WalletUpdate_ACCOUNT_PEER_REMOVED:
+				case pb.AccountUpdate_ACCOUNT_PEER_REMOVED:
 					break
 				}
 			}
